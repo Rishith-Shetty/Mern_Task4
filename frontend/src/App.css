@@ -5,142 +5,172 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f7f7f8;
+    background: #f8f8f6;
     color: #222;
 }
 
-nav {
-    height: 65px;
+.app {
+    width: 650px;
+    max-width: 92%;
+    margin: 50px auto;
+}
+
+.intro {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     background: #222;
     color: white;
-    padding: 0 7%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
-nav strong {
-    font-size: 19px;
-}
-
-nav span {
-    font-size: 13px;
-    color: #ccc;
-}
-
-.content {
-    width: 900px;
-    max-width: 90%;
-    margin: 45px auto;
-}
-
-.heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.heading h1 {
+.intro h1 {
     margin: 0;
+    font-size: 28px;
 }
 
-.heading p {
+.intro p {
+    margin: 3px 0;
     color: #888;
 }
 
-.heading button {
-    background: #222;
-    color: white;
-    border: none;
-    padding: 11px 17px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.form {
+form {
     background: white;
-    padding: 18px;
-    margin: 25px 0;
-    display: flex;
-    gap: 10px;
     border: 1px solid #ddd;
-    border-radius: 7px;
+    border-radius: 10px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 140px 80px;
+    gap: 12px;
+    margin-bottom: 30px;
 }
 
-.form input {
-    flex: 1;
+.field label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.field input {
+    width: 100%;
     padding: 11px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
-.form button {
-    width: 100px;
+form > button {
+    align-self: end;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
     background: #222;
     color: white;
-    border: none;
-    border-radius: 5px;
+    cursor: pointer;
 }
 
-.table {
+form .cancel {
+    grid-column: 3;
+    background: #888;
+    margin-top: -5px;
+}
+
+.item {
     background: white;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.table-head,
-.table-row {
-    display: grid;
-    grid-template-columns: 80px 1fr 150px 170px;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
     align-items: center;
-    padding: 17px 20px;
+    gap: 15px;
 }
 
-.table-head {
-    background: #f1f1f1;
-    font-size: 11px;
-    font-weight: bold;
-    color: #777;
-}
-
-.table-row {
-    border-top: 1px solid #eee;
-}
-
-.table-row > span:first-child {
-    color: #999;
-}
-
-.table-row button {
-    border: none;
-    padding: 7px 11px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.edit {
+.number {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     background: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 }
 
-.delete {
-    background: #ffe1e1;
+.details {
+    flex: 1;
+}
+
+.details strong {
+    display: block;
+}
+
+.details small {
+    color: #999;
+    font-size: 11px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+.actions button {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions button:last-child {
     color: #d00;
 }
 
-@media (max-width: 700px) {
-    .table-head {
-        display: none;
-    }
+.empty {
+    text-align: center;
+    padding: 35px;
+    color: #999;
+}
 
-    .table-row {
+@media (max-width: 650px) {
+    form {
         display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-direction: column;
     }
 
-    .table-row strong {
+    form button {
+        width: 100%;
+    }
+
+    form .cancel {
+        margin-top: 0;
+    }
+
+    .item {
+        flex-wrap: wrap;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .actions button {
         flex: 1;
     }
 }

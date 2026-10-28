@@ -63,107 +63,109 @@ function App() {
     }
 
     return (
-        <div>
+        <div className="app">
 
-            <nav>
-                <strong>Item Manager</strong>
+            <div className="intro">
+                <div className="circle">I</div>
 
-                <span>
-                    Total Items: {items.length}
-                </span>
-            </nav>
+                <div>
+                    <h1>Items</h1>
+                    <p>
+                        {items.length} item
+                        {items.length !== 1 ? "s" : ""}
+                    </p>
+                </div>
+            </div>
 
-            <div className="content">
+            <form onSubmit={saveItem}>
 
-                <div className="heading">
-                    <div>
-                        <h1>Items</h1>
-                        <p>Manage your products</p>
-                    </div>
+                <div className="field">
+                    <label>Name</label>
 
+                    <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Item name"
+                    />
+                </div>
+
+                <div className="field">
+                    <label>Price</label>
+
+                    <input
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        placeholder="Price"
+                    />
+                </div>
+
+                <button>
+                    {editId ? "Save" : "Add"}
+                </button>
+
+                {editId && (
                     <button
+                        type="button"
+                        className="cancel"
                         onClick={() => {
                             setEditId(null)
                             setName("")
                             setPrice("")
                         }}
                     >
-                        + Add Item
+                        Cancel
                     </button>
-                </div>
+                )}
 
-                <form
-                    className="form"
-                    onSubmit={saveItem}
-                >
+            </form>
 
-                    <input
-                        placeholder="Item name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
+            <section>
 
-                    <input
-                        type="number"
-                        placeholder="Price"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
+                {items.map((item) => (
 
-                    <button>
-                        {editId ? "Update" : "Add"}
-                    </button>
+                    <div className="item" key={item.id}>
 
-                </form>
+                        <div className="number">
+                            {item.id}
+                        </div>
 
-                <div className="table">
-
-                    <div className="table-head">
-                        <span>ID</span>
-                        <span>NAME</span>
-                        <span>PRICE</span>
-                        <span>ACTION</span>
-                    </div>
-
-                    {items.map((item) => (
-
-                        <div className="table-row" key={item.id}>
-
-                            <span>#{item.id}</span>
-
+                        <div className="details">
                             <strong>{item.name}</strong>
+                            <small>Product item</small>
+                        </div>
 
-                            <span>
-                                ₹{item.price}
-                            </span>
+                        <div className="price">
+                            ₹{item.price}
+                        </div>
 
-                            <div>
-                                <button
-                                    className="edit"
-                                    onClick={() =>
-                                        editItem(item)
-                                    }
-                                >
-                                    Edit
-                                </button>
+                        <div className="actions">
 
-                                <button
-                                    className="delete"
-                                    onClick={() =>
-                                        deleteItem(item.id)
-                                    }
-                                >
-                                    Delete
-                                </button>
-                            </div>
+                            <button
+                                onClick={() => editItem(item)}
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                onClick={() => deleteItem(item.id)}
+                            >
+                                ×
+                            </button>
 
                         </div>
 
-                    ))}
+                    </div>
 
-                </div>
+                ))}
 
-            </div>
+                {items.length === 0 && (
+                    <div className="empty">
+                        Your item list is empty.
+                    </div>
+                )}
+
+            </section>
 
         </div>
     )
